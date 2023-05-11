@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Check using Symptoms</title>
+    <link rel="stylesheet" type="text/css" href="s2.css"> 
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <h1>Check using Symptoms</h1>
+    <form  onsubmit="loadData(event)">
+      <div class="checkbox-container">
+        <label><input id="input1" type="checkbox" name="symptom1" >Loss of smell</label>
+        <label><input id="input2" type="checkbox" name="symptom2" value="1">Tremors</label>
+        <label><input id="input3" type="checkbox" name="symptom3" value="1">Restless leg</label>
+        <label><input id="input4" type="checkbox" name="symptom4" value="1">Fatigue</label>
+        <label><input id="input5" type="checkbox" name="symptom5" value="1">Vision problem</label>
+        <label><input id="input6" type="checkbox" name="symptom6" value="1">Freezing</label>
+        <label><input id="input7" type="checkbox" name="symptom7" value="1">Family history</label>
+        <label><input id="input8" type="checkbox" name="symptom8" value="1">Speech difficulty</label>
+        <label><input id="input9" type="checkbox" name="symptom9" value="1">Hypomimia</label>
+        <label><input id="input10" type="checkbox" name="symptom10" value="1">Depression</label>
+        <label><input id="input11" type="checkbox" name="symptom11" value="1">Postural instability</label>
+        <label><input id="input12" type="checkbox" name="symptom12" value="1">Urinary problem</label>
+        <label><input id="input13" type="checkbox" name="symptom13" value="1">Irritability</label>
+      </div>
+      <button type="submit" >Submit</button>
+    </form>
+
+    <div id="output"></div>
+    <script>
+      const output=document.getElementById("output")
+
+      const loadData = (event) => {
+        event.preventDefault();
+        const input1 = document.getElementById("input1").checked==true?1:0;
+        const input2 = document.getElementById("input2").checked==true?1:0;
+        const input3 = document.getElementById("input3").checked==true?1:0;
+        const input4 = document.getElementById("input4").checked==true?1:0;
+        const input5 = document.getElementById("input5").checked==true?1:0;
+        const input6 = document.getElementById("input6").checked==true?1:0;
+        const input7 = document.getElementById("input7").checked==true?1:0;
+        const input8 = document.getElementById("input8").checked==true?1:0;
+        const input9 = document.getElementById("input9").checked==true?1:0;
+        const input10 = document.getElementById("input10").checked==true?1:0;
+        const input11 = document.getElementById("input11").checked==true?1:0;
+        const input12 = document.getElementById("input12").checked==true?1:0;
+        const input13 = document.getElementById("input13").checked==true?1:0;
+       
+
+        let data = {
+          input1,
+          input2,
+          input3,
+          input4,
+          input5,
+          input6,
+          input7,
+          input8,
+          input9,
+          input10,
+          input11,
+          input12,  
+          input13,
+        
+        };
+console.log(data)
+        axios.post("http://127.0.0.1:5000/symptoms", {"data":data}).then((res) => {
+          output.innerHTML=res.data.message
+        });
+      };
+    </script>
+  </body>
+</html>

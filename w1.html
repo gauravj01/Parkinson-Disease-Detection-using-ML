@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Check using voice</title>
+    <link rel="stylesheet" type="text/css" href="s1.css" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <h1>Check using voice</h1>
+    <p>Enter voice inputs</p>
+    <form id="voice-form" onsubmit="loadData(event)">
+      <label for="input1">MDVP:Fo(Hz)</label>
+      <input type="text" id="input1" name="input1" /><br />
+
+      <label for="input2">MDVP:Fhi(Hz)</label>
+      <input type="text" id="input2" name="input2" /><br />
+
+      <label for="input3">MDVP:Flo(Hz)</label>
+      <input type="text" id="input3" name="input3" /><br />
+
+      <label for="input4">MDVP:Jitter(%)</label>
+      <input type="text" id="input4" name="input4" /><br />
+
+      <label for="input5">MDVP:Jitter(Abs)</label>
+      <input type="text" id="input5" name="input5" /><br />
+
+      <label for="input6">MDVP:RAP</label>
+      <input type="text" id="input6" name="input6" /><br />
+
+      <label for="input7">MDVP:PPQ</label>
+      <input type="text" id="input7" name="input7" /><br />
+
+      <label for="input8">Jitter:DDP</label>
+      <input type="text" id="input8" name="input8" /><br />
+
+      <label for="input9">MDVP:Shimmer</label>
+      <input type="text" id="input9" name="input9" /><br />
+
+      <label for="input10">MDVP:Shimmer(dB)</label>
+      <input type="text" id="input10" name="input10" /><br />
+
+      <label for="input11">Shimmer:APQ3</label>
+      <input type="text" id="input11" name="input11" /><br />
+
+      <label for="input12">Shimmer:APQ5</label>
+      <input type="text" id="input12" name="input12" /><br />
+
+      <label for="input13">MDVP:APQ</label>
+      <input type="text" id="input13" name="input13" /><br />
+
+      <label for="input14">Shimmer:DDA</label>
+      <input type="text" id="input14" name="input14" /><br />
+
+      <label for="input15">NHR</label>
+      <input type="text" id="input15" name="input15" /><br />
+
+      <label for="input16">HNR</label>
+      <input type="text" id="input16" name="input16" /><br />
+
+      <label for="input17">RPDE</label>
+      <input type="text" id="input17" name="input17" /><br />
+
+      <label for="input18">DFA</label>
+      <input type="text" id="input18" name="input18" /><br />
+
+      <label for="input19">spread 1</label>
+      <input type="text" id="input19" name="input19" /><br />
+
+      <label for="input20">spread 2</label>
+      <input type="text" id="input20" name="input20" /><br />
+
+      <label for="input21">D2</label>
+      <input type="text" id="input21" name="input21" /><br />
+
+      <label for="input22">PPE</label>
+      <input type="text" id="input22" name="input22" /><br />
+
+      <button type="submit">Submit</button>
+    </form>
+
+    <div id="output"></div>
+
+    <script>
+      
+      const output=document.getElementById("output")
+      const loadData = (event) => {
+        event.preventDefault();
+        const input1 = document.getElementById("input1").value;
+        const input2 = document.getElementById("input2").value;
+        const input3 = document.getElementById("input3").value;
+        const input4 = document.getElementById("input4").value;
+        const input5 = document.getElementById("input5").value;
+        const input6 = document.getElementById("input6").value;
+        const input7 = document.getElementById("input7").value;
+        const input8 = document.getElementById("input8").value;
+        const input9 = document.getElementById("input9").value;
+        const input10 = document.getElementById("input10").value;
+        const input11 = document.getElementById("input11").value;
+        const input12 = document.getElementById("input12").value;
+        const input13 = document.getElementById("input13").value;
+        const input14 = document.getElementById("input14").value;
+        const input15 = document.getElementById("input15").value;
+        const input16 = document.getElementById("input16").value;
+        const input17 = document.getElementById("input17").value;
+        const input18 = document.getElementById("input18").value;
+        const input19 = document.getElementById("input19").value;
+        const input20 = document.getElementById("input20").value;
+        const input21 = document.getElementById("input21").value;
+        const input22 = document.getElementById("input22").value;
+
+        let data = {
+          input1,
+          input2,
+          input3,
+          input4,
+          input5,
+          input6,
+          input7,
+          input8,
+          input9,
+          input10,
+          input11,
+          input12,
+          input13,
+          input14,
+          input15,
+          input16,
+          input17,
+          input18,
+          input19,
+          input20,
+          input21,
+          input22,
+        };
+
+        axios.post("http://127.0.0.1:5000/voice", {"data":data}).then((res) => {
+          output.innerHTML=res.data.message
+        });
+      };
+    </script>
+  </body>
+</html>
